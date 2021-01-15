@@ -14,6 +14,7 @@ import org.mockito.Mockito
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.mock.mockito.MockBean
 import org.springframework.boot.web.server.LocalServerPort
+import org.springframework.test.context.TestPropertySource
 
 @Provider("b-service")
 // @PactFolder("pacts")
@@ -21,6 +22,7 @@ import org.springframework.boot.web.server.LocalServerPort
 @VerificationReports
 // @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestPropertySource(properties = ["grpc.server.port=8081"])
 class ProviderTests {
 
     @LocalServerPort

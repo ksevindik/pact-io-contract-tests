@@ -1,10 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import com.google.protobuf.gradle.*
 
 plugins {
     id("org.springframework.boot") version "2.4.2"
     id("io.spring.dependency-management") version "1.0.11.RELEASE"
     id("au.com.dius.pact") version "4.1.6"
     id("com.wiredforcode.spawn") version "0.8.2"
+    id("com.google.protobuf") version "0.8.10"
     kotlin("jvm") version "1.4.21"
     kotlin("plugin.spring") version "1.4.21"
 }
@@ -17,6 +19,7 @@ repositories {
     mavenCentral()
     maven { url = uri("https://repo.spring.io/snapshot") }
     maven { url = uri("https://repo.spring.io/milestone") }
+    maven("https://jitpack.io")
 }
 
 extra["springCloudVersion"] = "2020.0.1-SNAPSHOT"
@@ -34,6 +37,13 @@ dependencies {
     testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
     testImplementation("au.com.dius:pact-jvm-provider-junit5:4.0.10")
     testImplementation("au.com.dius:pact-jvm-consumer-junit5:4.0.10")
+
+    implementation("com.google.protobuf:protobuf-java:3.9.1")
+    implementation("io.grpc:grpc-stub:1.14.0")
+    implementation("io.grpc:grpc-protobuf:1.14.0")
+    implementation("javax.annotation:javax.annotation-api:1.3.2")
+
+    runtimeOnly("io.grpc:grpc-netty:1.14.0")
 }
 
 dependencyManagement {
@@ -70,7 +80,7 @@ tasks.register("stopService2") {
     doLast {
         project.exec {
             executable("/bin/bash")
-            args("-c", "kill `cat /tmp/a-service.pid`")
+            args("-c", "kill `cat /tmp/b-service.pid`")
         }
     }
 }
@@ -100,5 +110,33 @@ pact {
     publish {
         pactBrokerUrl = "http://localhost"
         version = "${project.version}"
+    }
+}
+
+sourceSets {
+    main {
+        // java.srcDir("src/main/kotlin")
+        // resources.srcDir("src/main/resources")
+        proto.srcDir("../proto")
+        java.srcDirs("build/generated/source/proto/main/java",
+                                "build/generated/source/proto/main/grpc")
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.9.1"
+    }
+    plugins {
+        id("grpc") {
+            artifact = "io.grpc:protoc-gen-grpc-java:1.15.1"
+        }
+    }
+    generateProtoTasks {
+        ofSourceSet("main").forEach {
+            it.plugins {
+                id("grpc")
+            }
+        }
     }
 }
