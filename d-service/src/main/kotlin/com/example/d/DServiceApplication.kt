@@ -1,4 +1,4 @@
-package com.example.dservice
+package com.example.d
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class DServiceApplication
 
 fun main(args: Array<String>) {
-	runApplication<DServiceApplication>(*args)
+    runApplication<DServiceApplication>(*args)
 }
