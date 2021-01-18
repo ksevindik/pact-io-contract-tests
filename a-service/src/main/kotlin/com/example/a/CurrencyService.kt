@@ -8,13 +8,13 @@ import java.util.*
 import kotlin.collections.HashMap
 
 @Component
-class CurrencyServiceClientAPIRestImpl() : CurrencyServiceClientAPI {
+class CurrencyService() {
 
     var restTemplate = RestTemplate()
 
     var baseUrl: String = "http://localhost:8084/"
 
-    override fun getCurrencies(username: String): List<Currency> {
+    fun getCurrencies(username: String): List<Currency> {
         val responseEntity = restTemplate.getForEntity("$baseUrl/rest/currencies/$username", String::class.java)
         if (responseEntity.statusCodeValue == 200) {
             val mapper = ObjectMapper()

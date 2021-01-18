@@ -63,9 +63,9 @@ class ConsumerTests {
     @Test
     @PactTestFor(pactMethod = "contractForGetCurrenciesWhenCurrenciesExist")
     fun testGetCurrenciesWithConsumerSpecificAPI(mockServer: MockServer) {
-        val currencyAPI = CurrencyServiceClientAPIRestImpl()
-        currencyAPI.baseUrl = mockServer.getUrl()
-        val actualCurrencies = currencyAPI.getCurrencies("foo")
+        val currencyService = CurrencyService()
+        currencyService.baseUrl = mockServer.getUrl()
+        val actualCurrencies = currencyService.getCurrencies("foo")
         MatcherAssert.assertThat(
             actualCurrencies,
             Matchers.containsInAnyOrder(Currency.getInstance("USD"), Currency.getInstance("TRY"))
@@ -75,7 +75,7 @@ class ConsumerTests {
     @Test
     @PactTestFor(pactMethod = "contractForGetCurrenciesWhenNoCurrencyExists")
     fun testGetCurrenciesWhenNoneExistsWithConsumerSpecificAPI(mockServer: MockServer) {
-        val currencyAPI = CurrencyServiceClientAPIRestImpl()
+        val currencyAPI = CurrencyService()
         currencyAPI.baseUrl = mockServer.getUrl()
         val actualCurrencies = currencyAPI.getCurrencies("bar")
         MatcherAssert.assertThat(
