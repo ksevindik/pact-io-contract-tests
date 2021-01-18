@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.autoconfigure.grpc.server.GrpcService
 
 @GrpcService
-class HelloGrpcService @Autowired constructor(private val helloService: HelloService) : GreeterGrpc.GreeterImplBase() {
+class HelloServiceGrpcAdapter @Autowired constructor(private val helloService: HelloService) : GreeterGrpc.GreeterImplBase() {
 
     override fun sayHello(request: HelloRequest?, responseObserver: StreamObserver<HelloReply>?) {
         val reply = helloService.sayHello(request!!)

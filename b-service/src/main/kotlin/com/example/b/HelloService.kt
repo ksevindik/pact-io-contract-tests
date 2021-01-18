@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component
 import org.springframework.stereotype.Service
 
 @Service
-class HelloServiceClientAPIGrpcImpl @Autowired constructor(private val channelFactory: ChannelFactory) : HelloServiceClientAPI {
+class HelloService @Autowired constructor(private val channelFactory: ChannelFactory) {
 
-    override fun sayHello(helloRequest: HelloRequest): HelloReply {
+    fun sayHello(helloRequest: HelloRequest): HelloReply {
         var mc = channelFactory.createChannel()
 
         var stub = GreeterGrpc.newBlockingStub(mc)

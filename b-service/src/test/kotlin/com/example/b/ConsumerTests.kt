@@ -42,7 +42,7 @@ class ConsumerTests {
     @Test
     @PactTestFor(pactMethod = "contractForSayHello")
     fun testSayHello(mockServer: MockServer) {
-        val helloServiceClientAPI = HelloServiceClientAPIGrpcImpl(object : ChannelFactory {
+        val helloService = HelloService(object : ChannelFactory {
             override fun createChannel(): Channel {
                 return GrpcHttpChannel("localhost", mockServer.getPort())
             }
@@ -50,7 +50,7 @@ class ConsumerTests {
 
         val request = HelloRequest.newBuilder().setName("kenan").build()
 
-        val response = helloServiceClientAPI.sayHello(request)
+        val response = helloService.sayHello(request)
 
         var greeting = response.message
 
