@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example.event";
+option java_outer_classname = "UserCreatedEventProto";
+
+package com.example.events;
+
+message UserCreatedEvent {
+    string firstName = 1;
+    string lastName = 2;
+    string email = 3;
+}
