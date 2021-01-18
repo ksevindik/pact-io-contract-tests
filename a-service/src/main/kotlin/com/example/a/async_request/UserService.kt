@@ -1,4 +1,4 @@
-package com.example.a
+package com.example.a.async_request
 
 import com.example.msg.UserCreationRequest
 import org.springframework.beans.factory.annotation.Autowired

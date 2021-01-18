@@ -1,4 +1,4 @@
-package com.example.a
+package com.example.a.rest
 
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper

@@ -8,6 +8,9 @@ import au.com.dius.pact.consumer.junit5.ProviderType
 import au.com.dius.pact.core.model.annotations.Pact
 import au.com.dius.pact.core.model.messaging.Message
 import au.com.dius.pact.core.model.messaging.MessagePact
+import com.example.a.async_request.AsyncRequestSender
+import com.example.a.async_request.User
+import com.example.a.async_request.UserService
 import com.example.msg.UserCreationRequest
 import com.google.protobuf.util.JsonFormat
 import com.nhaarman.mockitokotlin2.argumentCaptor
