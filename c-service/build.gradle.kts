@@ -40,10 +40,13 @@ dependencies {
 
     implementation("com.github.saturnism.spring-boot-starter-grpc:grpc-server-starter:master-SNAPSHOT")
     implementation("com.google.protobuf:protobuf-java:3.9.1")
+    implementation("com.google.protobuf:protobuf-java-util:3.9.1")
     implementation("io.grpc:grpc-stub:1.14.0")
     implementation("io.grpc:grpc-protobuf:1.14.0")
     implementation("javax.annotation:javax.annotation-api:1.3.2")
+    // implementation("io.github.lognet:grpc-spring-boot-starter:2.4.4")
 
+    testImplementation("io.grpc:grpc-netty:1.14.0")
     runtimeOnly("io.grpc:grpc-netty:1.14.0")
 }
 

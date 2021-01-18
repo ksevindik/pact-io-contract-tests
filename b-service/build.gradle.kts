@@ -39,9 +39,11 @@ dependencies {
     testImplementation("au.com.dius:pact-jvm-consumer-junit5:4.0.10")
 
     implementation("com.google.protobuf:protobuf-java:3.9.1")
+    implementation("com.google.protobuf:protobuf-java-util:3.9.1")
     implementation("io.grpc:grpc-stub:1.14.0")
     implementation("io.grpc:grpc-protobuf:1.14.0")
     implementation("javax.annotation:javax.annotation-api:1.3.2")
+    implementation("commons-io:commons-io:2.6")
 
     runtimeOnly("io.grpc:grpc-netty:1.14.0")
 }
