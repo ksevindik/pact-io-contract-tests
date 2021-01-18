@@ -7,6 +7,9 @@ import au.com.dius.pact.provider.junit.loader.PactBroker
 import au.com.dius.pact.provider.junit5.AmpqTestTarget
 import au.com.dius.pact.provider.junit5.PactVerificationContext
 import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvider
+import com.example.d.async_event.EventPublisher
+import com.example.d.async_event.User
+import com.example.d.async_event.UserService
 import com.example.event.UserCreatedEvent
 import com.google.protobuf.util.JsonFormat
 import com.nhaarman.mockitokotlin2.argumentCaptor
@@ -27,7 +30,7 @@ import org.springframework.test.context.TestPropertySource
 // @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = ["grpc.server.port=8081"])
-class ProviderTests {
+class AsyncEventProviderTests {
 
     @LocalServerPort
     protected var port: Int = 0

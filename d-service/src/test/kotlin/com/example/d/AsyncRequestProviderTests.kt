@@ -7,7 +7,9 @@ import au.com.dius.pact.provider.junit.loader.PactBroker
 import au.com.dius.pact.provider.junit5.AmpqTestTarget
 import au.com.dius.pact.provider.junit5.PactVerificationContext
 import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvider
-import com.example.event.UserCreatedEvent
+import com.example.d.async_event.User
+import com.example.d.async_event.UserService
+import com.example.d.async_request.UserCreationRequestHandler
 import com.example.msg.UserCreationRequest
 import com.google.protobuf.util.JsonFormat
 import com.nhaarman.mockitokotlin2.argumentCaptor
@@ -36,7 +38,7 @@ class AsyncRequestProviderTests {
     protected var port: Int = 0
 
     @Autowired
-    private lateinit var userCreationRequestConsumer: UserCreationRequestConsumer
+    private lateinit var userCreationRequestHandler: UserCreationRequestHandler
 
     @MockBean
     private lateinit var userService: UserService
@@ -62,7 +64,7 @@ class AsyncRequestProviderTests {
                 .setLastName("Bar")
                 .setEmail("a@b")
                 .build()
-        userCreationRequestConsumer.handle(userCreationRequest)
+        userCreationRequestHandler.handle(userCreationRequest)
 
         val argCaptor = argumentCaptor<User>()
         Mockito.verify(userService).create(argCaptor.capture())
