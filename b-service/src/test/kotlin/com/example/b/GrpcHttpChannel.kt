@@ -19,9 +19,6 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.nio.charset.Charset
 
-/**
- * @author ivangsa@gmail.com
- */
 class GrpcHttpChannel(private val host: String, private val port: Int) : Channel() {
     private val authority: String
     override fun <ReqT, RespT> newCall(

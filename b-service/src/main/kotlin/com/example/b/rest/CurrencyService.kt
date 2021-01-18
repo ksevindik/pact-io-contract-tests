@@ -1,4 +1,4 @@
-package com.example.b
+package com.example.b.rest
 
 import org.springframework.stereotype.Service
 

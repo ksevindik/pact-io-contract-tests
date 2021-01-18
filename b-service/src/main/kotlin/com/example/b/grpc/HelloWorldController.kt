@@ -1,4 +1,4 @@
-package com.example.b
+package com.example.b.grpc
 
 import com.example.hello.HelloRequest
 import org.springframework.beans.factory.annotation.Autowired

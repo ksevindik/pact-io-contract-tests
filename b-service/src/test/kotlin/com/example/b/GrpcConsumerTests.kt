@@ -6,6 +6,8 @@ import au.com.dius.pact.consumer.junit5.PactConsumerTestExt
 import au.com.dius.pact.consumer.junit5.PactTestFor
 import au.com.dius.pact.core.model.RequestResponsePact
 import au.com.dius.pact.core.model.annotations.Pact
+import com.example.b.grpc.ChannelFactory
+import com.example.b.grpc.HelloService
 import com.example.hello.HelloRequest
 import io.grpc.Channel
 import org.hamcrest.MatcherAssert
@@ -15,7 +17,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(PactConsumerTestExt::class)
 @PactTestFor(providerName = "c-service")
-class ConsumerTests {
+class GrpcConsumerTests {
     @Pact(consumer = "b-service")
     fun contractForSayHello(builder: PactDslWithProvider): RequestResponsePact {
         return builder

@@ -1,4 +1,4 @@
-package com.example.b
+package com.example.b.grpc
 
 import com.example.hello.GreeterGrpc
 import com.example.hello.HelloReply

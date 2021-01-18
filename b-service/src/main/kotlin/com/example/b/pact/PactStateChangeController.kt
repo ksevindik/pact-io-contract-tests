@@ -1,4 +1,4 @@
-package com.example.b
+package com.example.b.pact
 
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
