@@ -8,8 +8,11 @@ import au.com.dius.pact.provider.junit5.AmpqTestTarget
 import au.com.dius.pact.provider.junit5.PactVerificationContext
 import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvider
 import com.example.event.UserCreatedEvent
+import com.example.msg.UserCreationRequest
 import com.google.protobuf.util.JsonFormat
 import com.nhaarman.mockitokotlin2.argumentCaptor
+import org.hamcrest.MatcherAssert
+import org.hamcrest.Matchers
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.TestTemplate
 import org.junit.jupiter.api.extension.ExtendWith
@@ -22,20 +25,20 @@ import org.springframework.test.context.TestPropertySource
 
 @Provider("d-service")
 // @PactFolder("pacts")
-@PactBroker(host = "localhost", scheme = "http", port = "80",consumers = ["c-service"])
+@PactBroker(host = "localhost", scheme = "http", port = "80",consumers = ["a-service"])
 @VerificationReports
 // @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = ["grpc.server.port=8081"])
-class ProviderTests {
+class AsyncRequestProviderTests {
 
     @LocalServerPort
     protected var port: Int = 0
 
-    @MockBean
-    private lateinit var eventPublisher: EventPublisher
-
     @Autowired
+    private lateinit var userCreationRequestConsumer: UserCreationRequestConsumer
+
+    @MockBean
     private lateinit var userService: UserService
 
     @BeforeEach
@@ -51,15 +54,25 @@ class ProviderTests {
         context.verifyInteraction()
     }
 
-    @PactVerifyProvider("user created event")
-    fun publishUserCreatedEvent(): String {
-        val argCaptor = argumentCaptor<UserCreatedEvent>()
-        val user = User("Foo", "Bar", "a@b")
-        userService.create(user)
-        Mockito.verify(eventPublisher).publish(argCaptor.capture())
-        val event = argCaptor.firstValue
+    @PactVerifyProvider("user creation request")
+    fun handleUserCreationRequest(): String {
+        val userCreationRequest = UserCreationRequest
+                .newBuilder()
+                .setFirstName("Foo")
+                .setLastName("Bar")
+                .setEmail("a@b")
+                .build()
+        userCreationRequestConsumer.handle(userCreationRequest)
+
+        val argCaptor = argumentCaptor<User>()
+        Mockito.verify(userService).create(argCaptor.capture())
+        val actualUser = argCaptor.firstValue
+
+        MatcherAssert.assertThat(actualUser, Matchers.equalTo(User("Foo","Bar","a@b")))
+
         val printer = JsonFormat.printer()
-        val json = printer.print(event)
+        val json = printer.print(userCreationRequest)
         return json
     }
 }
+
