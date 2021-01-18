@@ -8,6 +8,8 @@ import au.com.dius.pact.consumer.junit5.ProviderType
 import au.com.dius.pact.core.model.annotations.Pact
 import au.com.dius.pact.core.model.messaging.Message
 import au.com.dius.pact.core.model.messaging.MessagePact
+import com.example.c.async_event.UserCreatedEventConsumer
+import com.example.c.async_event.UserService
 import com.example.event.UserCreatedEvent
 import com.google.protobuf.util.JsonFormat
 import org.junit.jupiter.api.Test
@@ -16,7 +18,7 @@ import org.mockito.Mockito
 
 @ExtendWith(PactConsumerTestExt::class)
 @PactTestFor(providerName = "d-service", providerType = ProviderType.ASYNCH)
-class ConsumerTests {
+class AsyncEventConsumerTests {
     @Pact(consumer = "c-service")
     fun contractForUserCreatedEvent(builder: MessagePactBuilder): MessagePact {
         return builder

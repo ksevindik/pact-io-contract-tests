@@ -7,6 +7,7 @@ import au.com.dius.pact.provider.junit.loader.PactBroker
 import au.com.dius.pact.provider.junit5.HttpTestTarget
 import au.com.dius.pact.provider.junit5.PactVerificationContext
 import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvider
+import com.example.c.grpc.HelloService
 import com.example.hello.HelloReply
 import com.example.hello.HelloRequest
 import org.junit.jupiter.api.BeforeEach
@@ -25,7 +26,7 @@ import org.springframework.test.context.TestPropertySource
 // @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestPropertySource(properties = ["grpc.server.port=8081"])
-class ProviderTests {
+class GrpcProviderTests {
 
     @LocalServerPort
     protected var port: Int = 0

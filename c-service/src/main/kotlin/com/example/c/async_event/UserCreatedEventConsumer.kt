@@ -1,4 +1,4 @@
-package com.example.c
+package com.example.c.async_event
 
 import com.example.event.UserCreatedEvent
 import org.springframework.beans.factory.annotation.Autowired

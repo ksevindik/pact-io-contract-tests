@@ -1,4 +1,4 @@
-package com.example.c
+package com.example.c.grpc
 
 import com.example.hello.HelloReply
 import com.example.hello.HelloRequest
