@@ -7,6 +7,7 @@ plugins {
     id("au.com.dius.pact") version "4.1.6"
     id("com.wiredforcode.spawn") version "0.8.2"
     id("com.google.protobuf") version "0.8.10"
+    id("com.apollographql.apollo") version "2.2.2"
     kotlin("jvm") version "1.4.21"
     kotlin("plugin.spring") version "1.4.21"
 }
@@ -46,6 +47,12 @@ dependencies {
     implementation("commons-io:commons-io:2.6")
 
     runtimeOnly("io.grpc:grpc-netty:1.14.0")
+
+    // The core runtime dependencies
+    implementation("com.apollographql.apollo:apollo-runtime:2.2.2")
+    // Coroutines extensions for easier asynchronicity handling
+    implementation("com.apollographql.apollo:apollo-coroutines-support:2.2.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3")
 }
 
 dependencyManagement {
@@ -142,3 +149,13 @@ protobuf {
         }
     }
 }
+
+apollo {
+    // instruct the compiler to generate Kotlin models
+    generateKotlinModels.set(true)
+}
+
+/*
+you can use ./gradlew downloadApolloSchema --endpoint="http://localhost:8086/graphql" --schema="schema.json"
+command to download schema grom graphql server
+ */

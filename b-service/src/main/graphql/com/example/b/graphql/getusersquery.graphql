@@ -1,0 +1,10 @@
+query getUsers {
+                 getUsers {
+                   firstName
+                   lastName
+                   email
+                   country {
+                     name
+                   }
+                 }
+               }
