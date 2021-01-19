@@ -1,5 +1,7 @@
-package com.example.d.async_event
+package com.example.d.service
 
+import com.example.d.async.EventPublisher
+import com.example.d.model.User
 import com.example.event.UserCreatedEvent
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

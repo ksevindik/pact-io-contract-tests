@@ -1,4 +1,4 @@
-package com.example.d.async_event
+package com.example.d.async
 
 import com.google.protobuf.Message
 import org.springframework.stereotype.Component

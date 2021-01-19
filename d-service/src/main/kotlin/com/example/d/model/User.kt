@@ -1,3 +1,3 @@
-package com.example.d.async_event
+package com.example.d.model
 
 data class User(val firstName: String, val lastName: String, val email: String)

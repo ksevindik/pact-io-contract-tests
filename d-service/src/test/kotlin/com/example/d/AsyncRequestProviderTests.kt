@@ -7,9 +7,9 @@ import au.com.dius.pact.provider.junit.loader.PactBroker
 import au.com.dius.pact.provider.junit5.AmpqTestTarget
 import au.com.dius.pact.provider.junit5.PactVerificationContext
 import au.com.dius.pact.provider.junit5.PactVerificationInvocationContextProvider
-import com.example.d.async_event.User
-import com.example.d.async_event.UserService
-import com.example.d.async_request.UserCreationRequestHandler
+import com.example.d.model.User
+import com.example.d.service.UserService
+import com.example.d.async.UserCreationRequestHandler
 import com.example.msg.UserCreationRequest
 import com.google.protobuf.util.JsonFormat
 import com.nhaarman.mockitokotlin2.argumentCaptor

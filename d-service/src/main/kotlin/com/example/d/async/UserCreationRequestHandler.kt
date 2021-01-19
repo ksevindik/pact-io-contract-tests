@@ -1,7 +1,7 @@
-package com.example.d.async_request
+package com.example.d.async
 
-import com.example.d.async_event.User
-import com.example.d.async_event.UserService
+import com.example.d.model.User
+import com.example.d.service.UserService
 import com.example.msg.UserCreationRequest
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Component
