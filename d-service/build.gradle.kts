@@ -43,6 +43,10 @@ dependencies {
     implementation("io.grpc:grpc-stub:1.14.0")
     implementation("io.grpc:grpc-protobuf:1.14.0")
     implementation("javax.annotation:javax.annotation-api:1.3.2")
+
+    implementation("com.graphql-java:graphql-spring-boot-starter:5.0.2")
+    implementation("com.graphql-java:graphiql-spring-boot-starter:5.0.2")
+    implementation("com.graphql-java:graphql-java-tools:5.2.4")
 }
 
 dependencyManagement {

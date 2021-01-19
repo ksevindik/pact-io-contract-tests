@@ -1,0 +1,12 @@
+type User {
+    id:ID
+    firstName:String!
+    lastName:String!
+    email:String!
+    country:Country!
+}
+
+type Country {
+    id:ID
+    name:String!
+}

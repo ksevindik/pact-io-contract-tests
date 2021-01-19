@@ -29,7 +29,7 @@ import org.springframework.test.context.TestPropertySource
 @VerificationReports
 // @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@TestPropertySource(properties = ["grpc.server.port=8081"])
+@TestPropertySource(locations = ["classpath:test.properties"])
 class AsyncEventProviderTests {
 
     @LocalServerPort
