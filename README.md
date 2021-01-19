@@ -12,13 +12,13 @@ This project is created in order to demonstrate how consumer driven contract tes
 It consists of four different applications written with Kotlin and Spring Boot, proto files used during gRPC 
 communication and for sharing payload between asynchronously communicating parties.
 
-##Pact Broker
+## Pact Broker
 [Pact Broker](https://github.com/pact-foundation/pact_broker) is used to share contract interations and verifications 
 between consumer and provider services. You need to make Pact Broker running on **80** port in your local environment in 
 order to be able to execute existing contract tests. You can follow the steps provided within this 
 [page](https://github.com/DiUS/pact_broker-docker/blob/master/POSTGRESQL.md) to install and make it running.
 
-##Consumer-Provider Summary Table
+## Consumer-Provider Summary Table
 
 Following is the summary table which shows services and their consumer/provider roles while performing contract testing
 of different communication methods.
@@ -31,9 +31,9 @@ of different communication methods.
 |c-service|d-service|Async Event|
 |a-service|d-service|Async Request/Command|
 
-##General Information about Services & Their Contract Tests
+## General Information about Services & Their Contract Tests
 
-###a-service
+### a-service
 
 * Demonstrates consumer driven contract testing of 
   [REST](https://github.com/ksevindik/pact-io-contract-tests/blob/master/a-service/src/test/kotlin/com/example/a/RestConsumerTests.kt) 
@@ -42,7 +42,7 @@ of different communication methods.
   communication mechanisms with the consumer role.
 * Exposes REST endpoints to perform experiments via [Swagger UI](http://localhost:8083).
 
-###b-service
+### b-service
 
 * Demonstrates consumer driven contract testing of 
   [gRPC](https://github.com/ksevindik/pact-io-contract-tests/blob/master/b-service/src/test/kotlin/com/example/b/GrpcConsumerTests.kt) 
@@ -54,7 +54,7 @@ of different communication methods.
   communication mechanism with the provider role.
 * Exposes REST endpoints to perform experiments via [Swagger UI](http://localhost:8084).
 
-###c-service
+### c-service
 
 * Demonstrates consumer driven contract testing of 
   [async event publish](https://github.com/ksevindik/pact-io-contract-tests/blob/master/c-service/src/test/kotlin/com/example/c/AsyncEventConsumerTests.kt) 
@@ -64,7 +64,7 @@ of different communication methods.
   with the provider role.
 * Exposes REST endpoints to perform experiments via [Swagger UI](http://localhost:8085).
 
-###d-service
+### d-service
 
 * Demonstrates consumer driven contract testing of 
   [GraphQL](https://github.com/ksevindik/pact-io-contract-tests/blob/master/d-service/src/test/kotlin/com/example/d/GraphQLProviderTests.kt) , 
@@ -86,7 +86,7 @@ instead of returning hard coded sample data from the memory.
 However, neither of those parts are prerequisite to assess how consumer driven contract
 testing using Pact can be performed for all those different communication methods.
 
-##Port Allocations
+## Port Allocations
 
 If you want to run those services and the Pact broker in your local environment you will need following ports available 
 in your environment.
@@ -100,7 +100,7 @@ in your environment.
 |d-service|8086|HTTP/REST/GraphQL|
 |Pact Broker|80|HTTP/REST|
 
-##Credits
+## Credits
 
 * Enabling gRPC contract tests within Pact is made possible using the information provided in this 
   [page](https://medium.com/@ivangsa/consumer-driven-contract-testing-for-grpc-pact-io-d60155d21c4c), so thanks
