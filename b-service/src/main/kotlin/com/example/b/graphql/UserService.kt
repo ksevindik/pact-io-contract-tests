@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service
 
 @Service
 class UserService {
-    var graphqlServerUrl = "http://localhost:8086/graphql"
+    var graphqlServerUrl = "http://localhost:8086"
 
     fun getUsers() : List<User> {
-        val apolloClient = ApolloClient.builder().serverUrl(graphqlServerUrl).build()
+        val apolloClient = ApolloClient.builder().serverUrl(graphqlServerUrl + "/graphql").build()
         var users : List<GetUsersQuery.GetUser?>? = null
         var errors : List<Error>? = null
         runBlocking {
