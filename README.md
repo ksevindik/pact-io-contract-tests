@@ -86,6 +86,16 @@ instead of returning hard coded sample data from the memory.
 However, neither of those parts are prerequisite to assess how consumer driven contract
 testing using Pact can be performed for all those different communication methods.
 
+## Pact Gradle Tasks
+
+Following pact gradle tasks can be used to publish interactions and check if deployment is possible on the consumer side.
+* **pactPublish**: You must run this task after executing consumer tests on the consumer side. Executing tests on the consumer
+side triggers creation of pact contract json files, and pactPublish task makes tehm to be sent to the Pact Broker.
+  
+* **canIDeploy**: You can run this this whether specified consumer version is deployable or not. You must provide
+  `-Ppacticipant=<consumer-service-name>` `-PpacticipantVersion=<consumer-service-version>` arguments to this task before 
+  executing it.
+
 ## Port Allocations
 
 If you want to run those services and the Pact broker in your local environment you will need following ports available 
